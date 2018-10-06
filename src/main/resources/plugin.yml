@@ -1,4 +1,5 @@
 name: MegumiParty
 main: com.weiboss.megumi.megumiparty.Main
+softdepend: [KotlinRunTime]
 version: 1.0
 author: Wei_Boss

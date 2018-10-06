@@ -37,19 +37,19 @@ class WeiUtil {
         fun copyFile(inputStream: InputStream, file: File) {
             try {
                 val fileOutputStream = FileOutputStream(file)
-                var read: Int = -1
-                inputStream.use {
-                    input ->
-                    fileOutputStream.use {
-                        with({read = input.read();read}() != -1) {
-                            it.write(read)
-                        }
-                    }
-
-                }
-            } catch (t: Throwable) {
-                t.printStackTrace()
+                val arrayOfByte = ByteArray(63)
+                var i: Int
+                do {
+                    i = inputStream.read(arrayOfByte)
+                    if (i < 0) break
+                    fileOutputStream.write(arrayOfByte, 0, i)
+                } while (true)
+                fileOutputStream.close()
+                inputStream.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
+
         }
 
         fun createItem(id: Int, data: Int, amount: Int, name: String?, lore: List<String>?): ItemStack {
